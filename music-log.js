@@ -51,7 +51,7 @@ service.get("/use.html", (request, response) => {
 // GET /artists should display number of albums artist has saved here
 
 service.get('artists', (request, response) => {
-    const query = "SELECT Artist, COUNT(Artist) FROM music";
+    const query = "SELECT Artist, COUNT(Artist) FROM Music GROUP BY Artist";
     connection.query(query, (error, rows) => {
         if (error) {
             response.status(500);
