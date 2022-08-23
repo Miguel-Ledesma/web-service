@@ -1,8 +1,7 @@
 const express = require(express);
-const artistCounts = {};
 const service = express();
 const fs = require('fs');
-const request = require('https');
+const {request} = require('https');
 const json = fs.readFileSync('credentials.json', 'utf8');
 const mysql = require('mysql');
 const credentials = JSON.parse(json);
