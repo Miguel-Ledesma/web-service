@@ -1,0 +1,14 @@
+{
+  "name": "web-service",
+  "version": "1.0.0",
+  "description": "store music people have or want infomation on",
+  "main": "music-log.js",
+  "scripts": {
+    "start": "node music-log.js",
+    "test": "jest test"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "mysql": "^2.18.1"
+  }
+}
