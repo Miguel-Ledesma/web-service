@@ -230,7 +230,7 @@ service.delete('/artists/:id', (request, response) => {
 });
 
 // PORT THE PROGRAM IS ALIVE ON
-const port = 8443;
+const port = 8445;
 service.listen(port, () => {
     console.log(`I am alive on port ${port}!`);
 });
