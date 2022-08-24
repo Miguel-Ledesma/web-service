@@ -65,7 +65,7 @@ service.get('/artists', (request, response) => {
 connection.end()
 
 // PORT THE PROGRAM IS ALIVE ON
-const port = 5000;
+const port = 8443;
 service.listen(port, () => {
     console.log(`I am alive on port ${port}!`);
 });
