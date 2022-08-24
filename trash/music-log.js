@@ -1,5 +1,4 @@
 const express = require('express');
-const weatherLogs = {};
 const fs = require('fs');
 const { request } = require('https');
 const service = express();
@@ -230,7 +229,7 @@ service.delete('/artists/:id', (request, response) => {
 });
 
 // PORT THE PROGRAM IS ALIVE ON
-const port = 8443;
+const port = 5000;
 service.listen(port, () => {
     console.log(`I am alive on port ${port}!`);
 });

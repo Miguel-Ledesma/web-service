@@ -2,9 +2,11 @@
   "name": "web-service",
   "version": "1.0.0",
   "description": "music logger",
-  "main": "musicLog.js",
+  "main": "music-log.js",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "mysql": "^2.18.1",
+    "twas": "^2.1.2"
   },
   "devDependencies": {},
   "scripts": {
