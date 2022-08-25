@@ -222,7 +222,7 @@ service.delete('/artists/:id', (request, response) => {
     });
 });
 
-connection.end()
+//connection.end()
 
 // PORT THE PROGRAM IS ALIVE ON
 const port = 5001;
