@@ -39,10 +39,17 @@ function rowToLog(row) {
     }
 }
 
+function entryCountArtist(row) {
+    return {
+        artist:artist.id,
+        songs:row.songs,
+    }
+}
+
 // GET /artists should display number of albums artist has saved here
 
 service.get('/artists', (request, response) => {
-    const query = "SELECT artist, COUNT(artist) FROM Music GROUP BY Artist";
+    const query = "SELECT artist, COUNT(artist) AS songs FROM Music GROUP BY Artist";
     connection.query(query, (error, rows) => {
         if (error) {
             response.status(500);
@@ -55,7 +62,7 @@ service.get('/artists', (request, response) => {
             // MIGHT NEED TO PUT const log = row.map(rowToLog); HERE
             response.json ({
                 ok: true,
-                results: rows.map(rowToLog)
+                results: rows.map(entryCountArtist)
             });
         }
 
