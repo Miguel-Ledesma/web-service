@@ -114,7 +114,7 @@ service.get('/artists/:artist/:album', (request, response) => {
 
 // GET ALL ARTIST AND ALBUMS THAT CAME OUT IN A PARTICULAR YEAR
 service.get('/artists/:albumYear', (request, response) => {
-    const parameters = [parseInt(request.params.albumYear)];
+    const parameters = [request.params.albumYear];
     const query = 'SELECT artist, album, COUNT(song) FROM Music WHERE albumYear = ? GROUP BY artist, album ORDER BY artist';
 
     connection.query(query, parameters, (error, rows) => {
