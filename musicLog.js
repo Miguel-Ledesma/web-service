@@ -48,7 +48,7 @@ service.get('/artists', (request, response) => {
             response.status(500);
             response.json ({
                 ok: false,
-                results: 'oops, something when wrong here.',
+                results: error.message,
             });
         }
         else {
