@@ -40,10 +40,10 @@ function rowToLog(row) {
 }
 
 
-// GET /artists should display number of albums artist has saved here
+// GET /artists should display all artists recorded
 
 service.get('/artists', (request, response) => {
-    const query = "SELECT artist, COUNT(artist) FROM Music GROUP BY Artist";
+    const query = "SELECT artist FROM Music GROUP BY Artist";
     connection.query(query, (error, rows) => {
         if (error) {
             response.status(500);
