@@ -7,6 +7,8 @@ const json = fs.readFileSync('credentials.json', 'utf8');
 const credentials = JSON.parse(json);
 const connection = mysql.createConnection(credentials);
 
+
+// ALL THIS ALLOWS THE CURL REQUESTS TO COME TRHOUGH
 service.use(express.json());
 
 connection.connect(error => {
@@ -26,10 +28,12 @@ service.options('*', (request, response) => {
     response.sendStatus(200);
 });
 
+// TO SHOW THE USER HOW TO CURL TO THIS SITE
 service.get("/use.html", (request, response) => {
     response.sendFile('use.html', {root: "use"});
 });
 
+// TURN EVERYTHING INTO SOMETHING THAT CAN BE USED AS A REPSONSE
 function rowToLog(row) {
     return {
         id: row.id,
@@ -40,9 +44,7 @@ function rowToLog(row) {
     }
 }
 
-
-// GET /artists should display all artists recorded
-
+// TO DISPLAY ALL ARTISTS THAT ARE IN THE SYSTEM
 service.get('/artists', (request, response) => {
     const query = "SELECT artist FROM Music WHERE is_deleted = 0 GROUP BY Artist";
     connection.query(query, (error, rows) => {
@@ -63,7 +65,6 @@ service.get('/artists', (request, response) => {
 
     });
 });
-
 
 // GET AN ARTIST'S ALBUMS AND THE SONG COUNT ON EACH ALBUM
 service.get('/artists/:artist', (request, response) => {
@@ -176,7 +177,6 @@ service.post('/artists', (request, response) => {
 });
 
 // UPDATE ENTRY ALREADY IN DATABASE
-
 service.patch('/artists/:id', (request, response) => {
     const parameters = [
         request.body.artist,
@@ -223,8 +223,6 @@ service.delete('/artists/:id', (request, response) => {
         }
     });
 });
-
-//connection.end()
 
 // PORT THE PROGRAM IS ALIVE ON
 const port = 5001;
