@@ -144,7 +144,7 @@ service.post('/artists', (request, response) => {
         const parameters = [
             request.body.artist,
             request.body.album,
-            parseInt(request.body.albumYear),
+            request.body.albumYear,
             request.body.song
         ];
 
@@ -180,9 +180,9 @@ service.patch('/artists/:id', (request, response) => {
     const parameters = [
         request.body.artist,
         request.body.album,
-        parseInt(request.body.albumYear),
+        request.body.albumYear,
         request.body.song,
-        parseInt(request.params.id)
+        request.params.id
     ]
     const query = 'UPDATE music SET artist = ?, album = ?, albumYear = ?, song = ? WHERE id = ?';
 
@@ -204,7 +204,7 @@ service.patch('/artists/:id', (request, response) => {
 
 // DELETE A RECORD WITH THE ID
 service.delete('/artists/:id', (request, response) => {
-    const parameters = [parseInt(request.params.id)];
+    const parameters = [request.params.id];
     const query = 'DELETE FROM Music WHERE id = ?';
 
     connection.query(query, parameters, (error, result) => {
