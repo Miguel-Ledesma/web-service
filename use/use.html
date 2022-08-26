@@ -11,8 +11,8 @@
         </section>
         <section>
             <h3>Assumption: GET Requests!</h3>
-            <p>Whenever a reference such as "/example/another-example" is made, assume that the reference is to "https://music-api.miguelledesma.com:8443/example/another-example" trying
-                to use it in the url. When referencing something similar such as "example/:new-example", the ":new-example" section only refers to using that specific section as a parameter,
+            <p>Whenever a reference such as <code>/example/another-example</code> is made, assume that the reference is to <code>https://music-api.miguelledesma.com:8443/example/another-example</code> trying
+                to use it in the url. When referencing something similar such as <code>example/:new-example</code>, the <code>:new-example</code> section only refers to using that specific section as a parameter,
                 so when trying to use that section, it may take any varied parameter you can think of (within reason).
             </p>
         </section>
@@ -23,16 +23,17 @@
                 There are a 4 different types of GET requests.
             </p>
             <ul>
-                <li><a>/artists</a> returns all artists that exist in the records.</li>
-                <li><a>/artists/:artist</a> returns all albums by the artist in the parameter.</li>
-                <li><a>/artists/:artist/:album</a> returns all songs in the album parameter owned by the artist parameter.</li>
-                <li><a>/artists/:albumYear</a> returns all albums by artists in a specific year.</li>
+                <li><code>/artists</code>> returns all artists that exist in the records.</li>
+                <li><code>/artists/:artist</code> returns all albums by the artist in the parameter.</li>
+                <li><code>/artists/:artist/:album</code>> returns all songs in the album parameter owned by the artist parameter.</li>
+                <li><code>/artists/:albumYear</code> returns all albums by artists in a specific year.</li>
             </ul>
             <p>
-                <a>NOTE:</a> The "/:albumYear" parameter will only allow for integer values, not alphabetical characters.
+                <a>NOTE:</a> The <code>/:albumYear</code> parameter will only allow for integer values, not alphabetical characters.
             </p>
             <p>If you wish to use a GET request using curl, do it in this manner:</p>
-            <p>curl https://music-api.miguelledesma.com:8443/artists/exampleArtist/exampleAlbum</p>
+            <p><code>curl https://music-api.miguelledesma.com:8443/artists/exampleArtist/exampleAlbum</code></p>
+            <p><a>NOTE:</a> If you wish to include a space when using curl GET requests, use <code>%20</code> as spaces</p>
         </section>
 
         <section>
@@ -48,23 +49,25 @@
             </ol>
             <p><a>NOTE:</a> The album year MUST be an integer.</p>
             <p>In order to create a new record, the curl request must follow this format:</p>
-            <p>curl --header 'Content-Type: application/json' --data '{"artist": "exampleArtist", "album": "exampleAlbum", "albumYear": 2022, "song": "exampleSong"}' https://music-api.miguelledesma.com:8443/artists</p>
-            <p><a>NOTE:</a> If you wish to include a single quote " ' " you must use this sequence of characters to include it " '\'' " (Double quotes not included).</p>
+            <p><code>curl --header 'Content-Type: application/json' --data '{"artist": "exampleArtist", "album": "exampleAlbum", "albumYear": 2022, "song": "exampleSong"}' https://music-api.miguelledesma.com:8443/artists</code></p>
+            <p><a>NOTE:</a> If you wish to include a single quote <code>'</code> you must use this sequence of characters to include it <code>'\''</code>.</p>
 
         </section>
 
         <section>
             <h3>PATCH Requests</h3>
             <p>If you wish to fix a record for any reason, you must use a curl request in the following manner: </p>
-            <p>curl --header 'Content-Type: application/json' --request PATCH --data '{"artist": "exampleArtist", "album": "exampleAlbum", "albumYear": 2022, "song": "exampleSong"}' https://music-api.miguelledesma.com:8443/artists/exampleID</p>
-            <p>where "exampleID" is an integer rather than alphabetical characters.</p>
+            <p><code>curl --header 'Content-Type: application/json' --request PATCH --data '{"artist": "exampleArtist", "album": "exampleAlbum", "albumYear": 2022, "song": "exampleSong"}' https://music-api.miguelledesma.com:8443/artists/exampleID</code></p>
+            <p>where <code>exampleID</code> is an integer rather than alphabetical characters.</p>
             <p><a>NOTE:</a> You must know the ID by getting the ID from "<a>/artists/:artist/:album</a>" GET requests.</p>
         </section>
 
         <section>
             <h3>DELETE Requests</h3>
             <p>If you wish to delete a record, use a curl request in the following manner:</p>
-            <p>curl </p>
+            <p><code>curl --request DELETE https://music-api.miguelledesma.com:8443/artists/exampleID</code></p>
+            <p>where <code>exampleID</code> is an integer rather than alphabetical characters.</p>
+            <p><a>NOTE:</a> You must know the ID by getting the ID from "<a>/artists/:artist/:album</a>" GET requests.</p>
         </section>
 
     </body>
