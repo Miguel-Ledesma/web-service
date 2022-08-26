@@ -5,5 +5,5 @@ CREATE TABLE Music (
     album VARCHAR(32),
     albumYear INT,
     song VARCHAR(32),
-    is_deleted INT
+    is_deleted INT DEFAULT 0
 );
