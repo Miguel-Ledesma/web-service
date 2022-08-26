@@ -184,7 +184,7 @@ service.patch('/artists/:id', (request, response) => {
         request.body.album,
         request.body.albumYear,
         request.body.song,
-        request.params.id
+        parseInt(request.params.id)
     ]
     const query = 'UPDATE music SET artist = ?, album = ?, albumYear = ?, song = ? WHERE id = ?';
 
