@@ -37,7 +37,6 @@ function rowToLog(row) {
         album: row.album,
         albumYear: row.albumYear,
         song: row.song,
-
     }
 }
 
@@ -45,7 +44,7 @@ function rowToLog(row) {
 // GET /artists should display all artists recorded
 
 service.get('/artists', (request, response) => {
-    const query = "SELECT artist FROM Music GROUP BY Artist";
+    const query = "SELECT artist FROM Music WHERE is_deleted = 0 GROUP BY Artist";
     connection.query(query, (error, rows) => {
         if (error) {
             response.status(500);
@@ -69,7 +68,7 @@ service.get('/artists', (request, response) => {
 // GET AN ARTIST'S ALBUMS AND THE SONG COUNT ON EACH ALBUM
 service.get('/artists/:artist', (request, response) => {
     const parameters = [request.params.artist];
-    const query = 'SELECT artist, album, COUNT(song) FROM Music WHERE Artist = ? GROUP BY album ORDER BY album';
+    const query = 'SELECT artist, album, COUNT(song) FROM Music WHERE Artist = ? AND is_deleted = 0 GROUP BY album ORDER BY album';
     connection.query(query, parameters, (error, rows) => {
         if (error) {
             response.status(500);
@@ -94,7 +93,7 @@ service.get('/artists/:artist/:album', (request, response) => {
         request.params.artist,
         request.params.album
     ];
-    const query = 'SELECT artist, album, song FROM Music WHERE artist = ? AND album = ? ORDER BY song';
+    const query = 'SELECT artist, album, song FROM Music WHERE artist = ? AND album = ? and is_deleted = 0 ORDER BY song';
 
     connection.query(query, parameters, (error, rows) => {
         if (error) {
@@ -117,7 +116,7 @@ service.get('/artists/:artist/:album', (request, response) => {
 // GET ALL ARTIST AND ALBUMS THAT CAME OUT IN A PARTICULAR YEAR
 service.get('/albums/:albumYear', (request, response) => {
     const parameters = [request.params.albumYear];
-    const query = 'SELECT artist, album, COUNT(song) FROM Music WHERE albumYear = ? GROUP BY artist, album ORDER BY artist';
+    const query = 'SELECT artist, album, COUNT(song) FROM Music WHERE albumYear = ? and is_deleted = 0 GROUP BY artist, album ORDER BY artist';
 
     connection.query(query, parameters, (error, rows) => {
         if (error) {
@@ -207,7 +206,7 @@ service.patch('/artists/:id', (request, response) => {
 // DELETE A RECORD WITH THE ID
 service.delete('/artists/:id', (request, response) => {
     const parameters = [request.params.id];
-    const query = 'DELETE FROM Music WHERE id = ?';
+    const query = 'UPDATE Music SET is_deleted = 1 WHERE id = ?';
 
     connection.query(query, parameters, (error, result) => {
         if (error) {
