@@ -7,6 +7,8 @@ const json = fs.readFileSync('credentials.json', 'utf8');
 const credentials = JSON.parse(json);
 const connection = mysql.createConnection(credentials);
 
+service.use(express.json());
+
 connection.connect(error => {
   if (error) {
     console.error(error);
