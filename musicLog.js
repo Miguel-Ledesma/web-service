@@ -75,7 +75,7 @@ service.get('/artists/:artist', (request, response) => {
             response.status(500);
             response.json({
                 ok: false,
-                results: 'invalid input, requires artist',
+                results: error.message,
             });
         }
         else {
