@@ -69,7 +69,7 @@ service.get('/artists', (request, response) => {
 // GET AN ARTIST'S ALBUMS AND THE SONG COUNT ON EACH ALBUM
 service.get('/artists/:artist', (request, response) => {
     const parameters = [request.params.artist];
-    const query = 'SELECT artist, album, albumYear, COUNT(song) FROM Music WHERE Artist = ? AND is_deleted = 0 GROUP BY album ORDER BY album';
+    const query = 'SELECT artist, album, albumYear, COUNT(song) FROM Music WHERE Artist = ? AND is_deleted = 0 GROUP BY artist, album, albumYear ORDER BY album';
     connection.query(query, parameters, (error, rows) => {
         if (error) {
             response.status(500);
