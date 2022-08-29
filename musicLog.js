@@ -116,7 +116,7 @@ service.get('/artists/:artist/:album', (request, response) => {
 
 // GET ALL ARTIST AND ALBUMS THAT CAME OUT IN A PARTICULAR YEAR
 service.get('/albums/:albumYear', (request, response) => {
-    const parameters = [request.params.albumYear];
+    const parameters = [parseInt(request.params.albumYear)];
     const query = 'SELECT artist, album, COUNT(song) FROM Music WHERE albumYear = ? and is_deleted = 0 GROUP BY artist, album ORDER BY artist';
 
     connection.query(query, parameters, (error, rows) => {
@@ -146,7 +146,7 @@ service.post('/artists', (request, response) => {
         const parameters = [
             request.body.artist,
             request.body.album,
-            request.body.albumYear,
+            parseInt(request.body.albumYear),
             request.body.song
         ];
 
@@ -181,7 +181,7 @@ service.patch('/artists/:id', (request, response) => {
     const parameters = [
         request.body.artist,
         request.body.album,
-        request.body.albumYear,
+        parseInt(request.body.albumYear),
         request.body.song,
         parseInt(request.params.id)
     ]
