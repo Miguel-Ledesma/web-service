@@ -31,7 +31,6 @@ service.options('*', (request, response) => {
 // TO SHOW THE USER HOW TO CURL TO THIS SITE
 service.get("/use.html", (request, response) => {
     response.sendFile('use.html', {root: "use"});
-    response.sendFile('use.css', {root: "use"})
 });
 
 // TURN EVERYTHING INTO SOMETHING THAT CAN BE USED AS A REPSONSE
